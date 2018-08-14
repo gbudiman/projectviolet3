@@ -10,6 +10,6 @@ public class EquipAccessory : EquipSlot {
   }
 
   public bool IsRemovedBy(string _conditional_name) {
-    return base.name == _conditional_name
+    return base.name == _conditional_name;
   }
 }
