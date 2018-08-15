@@ -25,13 +25,5 @@ public class ProbabilisticMechanic {
     return false;
   }
 
-  /// <summary>
-  /// Add jitter 
-  /// </summary>
-  /// <returns>The jitter.</returns>
-  /// <param name="mu">Mu.</param>
-  /// <param name="sigma">Sigma.</param>
-  public static float Jitter(float mu, float sigma) {
-    return 0;
-  }
+
 }

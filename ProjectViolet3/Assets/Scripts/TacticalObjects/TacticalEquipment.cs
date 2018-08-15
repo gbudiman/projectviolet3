@@ -2,15 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tactical : MonoBehaviour {
+public class TacticalEquipment : TacticalGameObject {
+  public TacticalEquipment() {
+    
+  }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

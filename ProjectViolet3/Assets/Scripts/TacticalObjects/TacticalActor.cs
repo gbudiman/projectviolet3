@@ -23,6 +23,5 @@ public class TacticalActor : TacticalGameObject {
   public void EngageMeleeAgainst(TacticalActor other_actor, TacticalAction action) {
 
   }
-
   
 }
