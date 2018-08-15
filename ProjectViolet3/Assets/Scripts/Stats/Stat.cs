@@ -6,15 +6,17 @@ public class Stat {
   public int hp;
   public int max_hp;
   public float mass;
+
+  public enum Stats { hp, max_hp, mass };
   
-  Stat(int _hp) {
+  public Stat(int _hp) {
     SetMaxHp(_hp);
     SetHp(_hp);
   }
 
-  Stat(int _hp, int _hp_remaining) {
+  public Stat(int _hp, int _hp_remaining) {
     SetMaxHp(_hp);
-    SetHp(_hp);
+    SetHp(_hp_remaining);
   }
 
   public void AdjustHP(int x) {
@@ -26,10 +28,6 @@ public class Stat {
   }
 
   public void AdjustMaxHP(int x) {
-
-  }
-
-  public void SetMass(float _mass) {
 
   }
 
