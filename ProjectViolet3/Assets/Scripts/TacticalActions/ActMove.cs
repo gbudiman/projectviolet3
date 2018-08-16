@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActMove : MonoBehaviour {
+public class ActMove : TacticalAction, IActPathable {
+  public ActMove(): base() {
+    base.SetName("Move");
+    base.is_available = true;
+  }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
+  public void Act(Vector3 direction) {
+    
+  }
 	
-	// Update is called once per frame
-	void Update () {
-		
-	}
 }

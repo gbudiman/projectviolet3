@@ -37,6 +37,8 @@ public class TacticalActor : TacticalGameObject {
   void PopulateGenericActions() {
     List<TacticalAction> generic_actions = new List<TacticalAction>();
     generic_actions.Add(new ActEquip());
+    generic_actions.Add(new ActMove());
+    generic_actions.Add(new ActWait());
 
     foreach (TacticalAction t in generic_actions) {
       AddToActionsDictionary(t);

@@ -2,15 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ActWait : MonoBehaviour {
+public class ActWait : TacticalAction, IWaitUntil {
+  public ActWait(): base() {
+    base.SetName("Wait");
+  }
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+  public void Act(TacticalGameObject other) {
+    
+  }
 }
