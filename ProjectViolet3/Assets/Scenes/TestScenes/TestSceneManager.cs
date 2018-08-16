@@ -4,18 +4,18 @@ using UnityEngine;
 
 public class TestSceneManager : MonoBehaviour {
   TacticalActor tactical_actor_prefab;
-  TacticalEquipment tactical_equipment_prefab;
+  TacticalItem tactical_equipment_prefab;
 
 	// Use this for initialization
 	void Start () {
     tactical_actor_prefab = Resources.Load<TacticalActor>("ActorPrefab");
-    tactical_equipment_prefab = Resources.Load<TacticalEquipment>("ItemPrefab");
+    tactical_equipment_prefab = Resources.Load<TacticalItem>("ItemPrefab");
 
     TacticalActor actor_0 = Instantiate(tactical_actor_prefab);
-    TacticalEquipment item_2h = Instantiate(tactical_equipment_prefab);
+    TacticalItem item_2h = Instantiate(tactical_equipment_prefab);
 
     actor_0.Spawn();
-    item_2h.Spawn(EquipSlot.Slot.arm_2h);
+    item_2h.Spawn("Gaebolg Spear", EquipSlot.Slot.arm_2h);
     TestEquip2H(actor_0, item_2h);
 	}
 	
@@ -24,9 +24,10 @@ public class TestSceneManager : MonoBehaviour {
 		
 	}
 
-  void TestEquip2H(TacticalActor actor, TacticalEquipment item) {
+  void TestEquip2H(TacticalActor actor, TacticalItem item) {
     TacticalAction action;
     actor.actions.TryGetValue("Equip Item", out action);
-    ((ActEquip)action).Act(item, EquipSlot.Slot.arm_l);
+    ((ActEquip)action).Act(item);
+    actor.QueryAnatomy(ActorAnatomy.Anatomy.arm_r);
   }
 }

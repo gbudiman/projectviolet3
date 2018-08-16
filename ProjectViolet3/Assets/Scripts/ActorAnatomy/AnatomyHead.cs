@@ -7,13 +7,17 @@ public class AnatomyHead : ActorAnatomy {
   EquipHead equip_head;
   EquipMask equip_mask;
 
-  public AnatomyHead() {
+  public AnatomyHead(): base() {
     
   }
 
-  public new List<EquipSlot.Slot> MapAnatomySlot() {
+  public override List<EquipSlot.Slot> MapAnatomySlot() {
     return new List<EquipSlot.Slot>() {
       EquipSlot.Slot.ears, EquipSlot.Slot.head, EquipSlot.Slot.mask
     };
+  }
+
+  public override void Equip(TacticalItem item) {
+    
   }
 }

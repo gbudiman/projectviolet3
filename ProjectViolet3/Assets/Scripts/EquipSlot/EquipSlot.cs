@@ -9,4 +9,26 @@ public abstract class EquipSlot {
     ears, head, mask,
     feet, legs
   };
+
+  TacticalItem item;
+
+  public EquipSlot() {
+    item = null;
+  }
+
+  public void Assign(TacticalItem _item) {
+    item = _item;
+  }
+
+  public void Detach() {
+    item = null;
+  }
+
+  public TacticalItem Get() {
+    return item;
+  }
+
+  public bool IsEmpty() {
+    return item == null;
+  }
 }

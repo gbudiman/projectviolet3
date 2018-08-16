@@ -8,7 +8,18 @@ public class ActEquip : TacticalAction {
     base.is_available = true;
   }
 
-  public void Act(TacticalEquipment equipment, EquipSlot.Slot slot) {
-    
+  public void Act(TacticalItem item, EquipSlot.Slot slot) {
+    _Act(item, slot);
+  }
+
+  public void Act(TacticalItem item) {
+    EquipSlot.Slot slot = item.target_slot[0];
+    _Act(item, slot);
+  }
+
+  private void _Act(TacticalItem item, EquipSlot.Slot slot) {
+    ActorAnatomy anatomy;
+    actor.anatomy_map.TryGetValue(slot, out anatomy);
+    anatomy.Equip(item);
   }
 }

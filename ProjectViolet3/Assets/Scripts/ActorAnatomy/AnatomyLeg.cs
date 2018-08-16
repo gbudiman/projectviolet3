@@ -9,7 +9,25 @@ public class AnatomyLeg : ActorAnatomy {
   public enum Side { l, r };
   public Side side;
 
-  public AnatomyLeg() {
+  public AnatomyLeg(Side _side): base() {
+    side = _side;
+    slots = new Dictionary<EquipSlot.Slot, EquipSlot>();
+    equip_leg = new EquipLeg();
+    equip_foot = new EquipFoot();
+  }
+
+  public override List<EquipSlot.Slot> MapAnatomySlot() {
+    List<EquipSlot.Slot> rets = new List<EquipSlot.Slot>() {
+      EquipSlot.Slot.legs, EquipSlot.Slot.feet
+    };
+
+    slots.Add(EquipSlot.Slot.legs, equip_leg);
+    slots.Add(EquipSlot.Slot.feet, equip_foot);
+
+    return rets;
+  }
+
+  public override void Equip(TacticalItem item) {
     
   }
 }

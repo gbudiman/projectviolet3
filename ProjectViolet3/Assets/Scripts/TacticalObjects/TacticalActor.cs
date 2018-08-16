@@ -7,7 +7,7 @@ public class TacticalActor : TacticalGameObject {
   int action_points;
   public Dictionary<string, TacticalAction> actions;
   Dictionary<ActorAnatomy.Anatomy, ActorAnatomy> anatomies;
-  Dictionary<EquipSlot.Slot, ActorAnatomy> anatomy_map;
+  public Dictionary<EquipSlot.Slot, ActorAnatomy> anatomy_map;
 
 	// Use this for initialization
 	void Start () {
@@ -32,16 +32,22 @@ public class TacticalActor : TacticalGameObject {
     anatomy_map = new Dictionary<EquipSlot.Slot, ActorAnatomy>();
     anatomies = new Dictionary<ActorAnatomy.Anatomy, ActorAnatomy>() {
       { ActorAnatomy.Anatomy.head, new AnatomyHead() },
-      { ActorAnatomy.Anatomy.arm_l, new AnatomyArm() },
-      { ActorAnatomy.Anatomy.arm_r, new AnatomyArm() },
+      { ActorAnatomy.Anatomy.arm_l, new AnatomyArm(AnatomyArm.Side.l) },
+      { ActorAnatomy.Anatomy.arm_r, new AnatomyArm(AnatomyArm.Side.r) },
       { ActorAnatomy.Anatomy.body, new AnatomyBody() },
-      { ActorAnatomy.Anatomy.leg_l, new AnatomyLeg() },
-      { ActorAnatomy.Anatomy.leg_r, new AnatomyLeg() }
+      { ActorAnatomy.Anatomy.leg_l, new AnatomyLeg(AnatomyLeg.Side.l) },
+      { ActorAnatomy.Anatomy.leg_r, new AnatomyLeg(AnatomyLeg.Side.r) },
+
     };
 
     foreach (KeyValuePair<ActorAnatomy.Anatomy, ActorAnatomy> pair in anatomies) {
       foreach (EquipSlot.Slot slot in pair.Value.MapAnatomySlot()) {
-        anatomy_map.Add(slot, pair.Value);
+        // anatomy_map[slot] = pair.Value;
+        try {
+          anatomy_map.Add(slot, pair.Value);
+        } catch {
+            
+        }
       }
     }
   }
@@ -69,6 +75,19 @@ public class TacticalActor : TacticalGameObject {
 
   void AddToActionsDictionary(TacticalAction action) {
     actions.Add(action.name, action);
+  }
+
+  public void QueryAnatomy(ActorAnatomy.Anatomy _anatomy) {
+    ActorAnatomy anatomy;
+    anatomies.TryGetValue(_anatomy, out anatomy);
+
+    foreach (KeyValuePair<EquipSlot.Slot, EquipSlot> pair in anatomy.slots) {
+      var val = pair.Value.Get();
+
+      if (val != null) {
+        Debug.Log(pair.Key + " " + pair.Value.Get().name);
+      }
+    }
   }
   
 }

@@ -8,13 +8,17 @@ public class AnatomyBody : ActorAnatomy {
   EquipHip equip_hip;
   EquipWaist equip_waist;
 
-  public AnatomyBody() {
+  public AnatomyBody(): base() {
     
   }
 
-  public new List<EquipSlot.Slot> MapAnatomySlot() {
+  public override List<EquipSlot.Slot> MapAnatomySlot() {
     return new List<EquipSlot.Slot>() {
       EquipSlot.Slot.back, EquipSlot.Slot.body, EquipSlot.Slot.hip, EquipSlot.Slot.waist
     };
+  }
+
+  public override void Equip(TacticalItem item) {
+    
   }
 }
