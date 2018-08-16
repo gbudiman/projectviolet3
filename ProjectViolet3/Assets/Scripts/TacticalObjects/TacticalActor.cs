@@ -6,10 +6,12 @@ public class TacticalActor : TacticalGameObject {
   ActorStat stat;
   int action_points;
   public Dictionary<string, TacticalAction> actions;
+  Dictionary<ActorAnatomy.Anatomy, List<ActorAnatomy>> anatomies;
 
 	// Use this for initialization
 	void Start () {
     PopulateAvailableActions();
+    PopulateAnatomy();
 	}
 	
 	// Update is called once per frame
@@ -17,11 +19,12 @@ public class TacticalActor : TacticalGameObject {
 		
 	}
 
-  public void Move(float x, float y) {
+  public void EngageMeleeAgainst(TacticalActor other_actor, TacticalAction action) {
 
   }
 
-  public void EngageMeleeAgainst(TacticalActor other_actor, TacticalAction action) {
+  void PopulateAnatomy() {
+    anatomies = new Dictionary<ActorAnatomy.Anatomy, List<ActorAnatomy>>();
 
   }
 
