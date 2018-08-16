@@ -14,7 +14,9 @@ public class TestSceneManager : MonoBehaviour {
     TacticalActor actor_0 = Instantiate(tactical_actor_prefab);
     TacticalEquipment item_2h = Instantiate(tactical_equipment_prefab);
 
-    item_2h.SetTargetSlot(EquipSlot.Slot.arm_2h);
+    actor_0.Spawn();
+    item_2h.Spawn(EquipSlot.Slot.arm_2h);
+    TestEquip2H(actor_0, item_2h);
 	}
 	
 	// Update is called once per frame
@@ -22,7 +24,9 @@ public class TestSceneManager : MonoBehaviour {
 		
 	}
 
-  void TestEquip2H() {
-    
+  void TestEquip2H(TacticalActor actor, TacticalEquipment item) {
+    TacticalAction action;
+    actor.actions.TryGetValue("Equip Item", out action);
+    ((ActEquip)action).Act(item, EquipSlot.Slot.arm_l);
   }
 }

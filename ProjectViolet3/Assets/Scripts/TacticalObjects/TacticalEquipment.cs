@@ -13,7 +13,11 @@ public class TacticalEquipment : TacticalGameObject {
     
   }
 
-  public void SetTargetSlot(EquipSlot.Slot t) {
+  public void Spawn(EquipSlot.Slot t) {
+    SetTargetSlot(t);
+  }
+
+  void SetTargetSlot(EquipSlot.Slot t) {
     target_slot = t;
   }
 

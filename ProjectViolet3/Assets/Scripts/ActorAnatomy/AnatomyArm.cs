@@ -20,13 +20,17 @@ public class AnatomyArm : ActorAnatomy {
 
   public new List<EquipSlot.Slot> MapAnatomySlot() {
     List<EquipSlot.Slot> rets = new List<EquipSlot.Slot>() {
-      EquipSlot.Slot.arm, EquipSlot.Slot.hands
+      EquipSlot.Slot.hands
     };
 
-    if (side == Side.r) {
-      rets.Add(EquipSlot.Slot.arm_2h);
+    switch (side) {
+      case Side.l: rets.Add(EquipSlot.Slot.arm_l); break;
+      case Side.r: 
+        rets.Add(EquipSlot.Slot.arm_r);
+        rets.Add(EquipSlot.Slot.arm_2h);
+        break;
     }
 
-    return rets
+    return rets;
   }
 }

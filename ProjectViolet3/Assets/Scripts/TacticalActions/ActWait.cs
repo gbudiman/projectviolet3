@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class ActWait : TacticalAction, IWaitUntil {
-  public ActWait(): base() {
+  public ActWait(TacticalActor actor): base(actor) {
     base.SetName("Wait");
   }
 

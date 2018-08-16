@@ -11,8 +11,7 @@ public class TacticalActor : TacticalGameObject {
 
 	// Use this for initialization
 	void Start () {
-    PopulateAvailableActions();
-    PopulateAnatomy();
+    
 	}
 	
 	// Update is called once per frame
@@ -22,6 +21,11 @@ public class TacticalActor : TacticalGameObject {
 
   public void EngageMeleeAgainst(TacticalActor other_actor, TacticalAction action) {
 
+  }
+
+  public void Spawn() {
+    PopulateAvailableActions();
+    PopulateAnatomy();
   }
 
   void PopulateAnatomy() {
@@ -53,9 +57,9 @@ public class TacticalActor : TacticalGameObject {
 
   void PopulateGenericActions() {
     List<TacticalAction> generic_actions = new List<TacticalAction>();
-    generic_actions.Add(new ActEquip());
-    generic_actions.Add(new ActMove());
-    generic_actions.Add(new ActWait());
+    generic_actions.Add(new ActEquip(this));
+    generic_actions.Add(new ActMove(this));
+    generic_actions.Add(new ActWait(this));
 
     foreach (TacticalAction t in generic_actions) {
       AddToActionsDictionary(t);
