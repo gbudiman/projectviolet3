@@ -2,5 +2,5 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipHands : EquipSlot {
+public class EquipArm : EquipSlot {
 }

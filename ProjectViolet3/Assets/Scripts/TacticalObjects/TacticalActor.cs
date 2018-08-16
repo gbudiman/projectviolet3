@@ -6,7 +6,8 @@ public class TacticalActor : TacticalGameObject {
   ActorStat stat;
   int action_points;
   public Dictionary<string, TacticalAction> actions;
-  Dictionary<ActorAnatomy.Anatomy, List<ActorAnatomy>> anatomies;
+  Dictionary<ActorAnatomy.Anatomy, ActorAnatomy> anatomies;
+  Dictionary<EquipSlot.Slot, ActorAnatomy> anatomy_map;
 
 	// Use this for initialization
 	void Start () {
@@ -24,8 +25,21 @@ public class TacticalActor : TacticalGameObject {
   }
 
   void PopulateAnatomy() {
-    anatomies = new Dictionary<ActorAnatomy.Anatomy, List<ActorAnatomy>>();
+    anatomy_map = new Dictionary<EquipSlot.Slot, ActorAnatomy>();
+    anatomies = new Dictionary<ActorAnatomy.Anatomy, ActorAnatomy>() {
+      { ActorAnatomy.Anatomy.head, new AnatomyHead() },
+      { ActorAnatomy.Anatomy.arm_l, new AnatomyArm() },
+      { ActorAnatomy.Anatomy.arm_r, new AnatomyArm() },
+      { ActorAnatomy.Anatomy.body, new AnatomyBody() },
+      { ActorAnatomy.Anatomy.leg_l, new AnatomyLeg() },
+      { ActorAnatomy.Anatomy.leg_r, new AnatomyLeg() }
+    };
 
+    foreach (KeyValuePair<ActorAnatomy.Anatomy, ActorAnatomy> pair in anatomies) {
+      foreach (EquipSlot.Slot slot in pair.Value.MapAnatomySlot()) {
+        anatomy_map.Add(slot, pair.Value);
+      }
+    }
   }
 
   void PopulateAvailableActions() {

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TacticalEquipment : TacticalGameObject {
-  ActorAnatomy.Anatomy target_anatomy;
+  EquipSlot.Slot target_slot;
 
   public void Start() {
     
@@ -13,8 +13,8 @@ public class TacticalEquipment : TacticalGameObject {
     
   }
 
-  public void SetTargetAnatomy(ActorAnatomy.Anatomy t) {
-    target_anatomy = t;
+  public void SetTargetSlot(EquipSlot.Slot t) {
+    target_slot = t;
   }
 
 

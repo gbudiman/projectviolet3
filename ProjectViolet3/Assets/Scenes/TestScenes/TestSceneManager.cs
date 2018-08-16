@@ -14,11 +14,15 @@ public class TestSceneManager : MonoBehaviour {
     TacticalActor actor_0 = Instantiate(tactical_actor_prefab);
     TacticalEquipment item_2h = Instantiate(tactical_equipment_prefab);
 
-    item_2h.SetTargetAnatomy(ActorAnatomy.Anatomy.arm_2h);
+    item_2h.SetTargetSlot(EquipSlot.Slot.arm_2h);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+  void TestEquip2H() {
+    
+  }
 }

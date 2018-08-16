@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EquipLegs : MonoBehaviour {
+public class EquipFoot : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
