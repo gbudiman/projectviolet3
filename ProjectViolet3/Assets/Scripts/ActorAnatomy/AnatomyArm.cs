@@ -26,7 +26,7 @@ public class AnatomyArm : ActorAnatomy {
   }
 
   public override void UnEquip() {
-    throw new System.NotImplementedException();
+    DetachAll();
   }
 
   public override void UnEquip(EquipSlot.Slot slot) {
@@ -47,6 +47,18 @@ public class AnatomyArm : ActorAnatomy {
     }
 
     Attach(target_slot, item);
+  }
+
+  void Detach(EquipSlot.Slot _slot) {
+    EquipSlot slot;
+    slots.TryGetValue(_slot, out slot);
+    slot.Detach();
+  }
+
+  void DetachAll() {
+    foreach (KeyValuePair<EquipSlot.Slot, EquipSlot> pair in slots) {
+      pair.Value.Detach();
+    }
   }
 
   void DetachAll(List<EquipSlot.Slot> slots_to_detach) {

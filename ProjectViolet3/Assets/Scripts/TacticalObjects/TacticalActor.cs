@@ -66,6 +66,7 @@ public class TacticalActor : TacticalGameObject {
     generic_actions.Add(new ActEquip(this));
     generic_actions.Add(new ActMove(this));
     generic_actions.Add(new ActWait(this));
+    generic_actions.Add(new ActUnequip(this));
 
     foreach (TacticalAction t in generic_actions) {
       AddToActionsDictionary(t);

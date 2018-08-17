@@ -11,12 +11,12 @@ public class ActUnequip : TacticalAction {
   public void Act(ActorAnatomy.Anatomy _anatomy) {
     ActorAnatomy anatomy;
     actor.anatomies.TryGetValue(_anatomy, out anatomy);
-
+    anatomy.UnEquip();
   }
 
   public void Act(EquipSlot.Slot _slot) {
     ActorAnatomy anatomy;
     actor.anatomy_map.TryGetValue(_slot, out anatomy);
-
+    anatomy.UnEquip(_slot);
   }
 }

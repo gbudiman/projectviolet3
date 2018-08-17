@@ -27,21 +27,28 @@ public class TestSceneManager : MonoBehaviour {
 
   void TestEquip(TacticalActor actor, TacticalItem item) {
     TestEquip2H(actor, item);
-    TestUnequip(ActorAnatomy.Anatomy.arm_r);
+    TestUnequip(actor, ActorAnatomy.Anatomy.arm_r);
   }
 
   void TestEquip2H(TacticalActor actor, TacticalItem item) {
-    TacticalAction action;
-    actor.actions.TryGetValue("Equip Item", out action);
-    ((ActEquip)action).Act(item);
+    ActEquip action = (ActEquip)actor.actions["Equip Item"];
+    action.Act(item);
     var q = actor.QueryAnatomy();
 
     Assert.IsTrue(q[EquipSlot.Slot.arm_2h] == item.name);
     Assert.IsTrue(q[EquipSlot.Slot.arm_l] == item.name);
     Assert.IsTrue(q[EquipSlot.Slot.arm_r] == item.name);
+    Debug.Log("Test Equip 2H completed");
   }
 
-  void TestUnequip(ActorAnatomy.Anatomy anatomy) {
-    
+  void TestUnequip(TacticalActor actor, ActorAnatomy.Anatomy anatomy) {
+    ActUnequip action = (ActUnequip)actor.actions["Unequip Item"];
+    action.Act(anatomy);
+    var q = actor.QueryAnatomy();
+
+    Assert.IsTrue(q[EquipSlot.Slot.arm_2h] == "None");
+    Assert.IsTrue(q[EquipSlot.Slot.arm_l] == "None");
+    Assert.IsTrue(q[EquipSlot.Slot.arm_r] == "None");
+    Debug.Log("Test Unequip 2H completed");
   }
 }
