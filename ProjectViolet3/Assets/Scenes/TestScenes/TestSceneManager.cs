@@ -17,13 +17,18 @@ public class TestSceneManager : MonoBehaviour {
 
     actor_0.Spawn();
     item_2h.Spawn("Gaebolg Spear", EquipSlot.Slot.arm_2h);
-    TestEquip2H(actor_0, item_2h);
+    TestEquip(actor_0, item_2h);
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		
 	}
+
+  void TestEquip(TacticalActor actor, TacticalItem item) {
+    TestEquip2H(actor, item);
+    TestUnequip(ActorAnatomy.Anatomy.arm_r);
+  }
 
   void TestEquip2H(TacticalActor actor, TacticalItem item) {
     TacticalAction action;
@@ -34,5 +39,9 @@ public class TestSceneManager : MonoBehaviour {
     Assert.IsTrue(q[EquipSlot.Slot.arm_2h] == item.name);
     Assert.IsTrue(q[EquipSlot.Slot.arm_l] == item.name);
     Assert.IsTrue(q[EquipSlot.Slot.arm_r] == item.name);
+  }
+
+  void TestUnequip(ActorAnatomy.Anatomy anatomy) {
+    
   }
 }

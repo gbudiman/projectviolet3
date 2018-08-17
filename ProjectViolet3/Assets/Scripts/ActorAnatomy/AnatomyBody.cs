@@ -21,4 +21,12 @@ public class AnatomyBody : ActorAnatomy {
   public override void Equip(TacticalItem item) {
     
   }
+
+  public override void UnEquip() {
+    throw new System.NotImplementedException();
+  }
+
+  public override void UnEquip(EquipSlot.Slot slot) {
+    throw new System.NotImplementedException();
+  }
 }

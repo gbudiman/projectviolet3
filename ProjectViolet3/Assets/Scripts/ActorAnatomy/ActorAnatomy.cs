@@ -14,4 +14,6 @@ public abstract class ActorAnatomy : IAnatomyMappable {
   }
 
   public abstract void Equip(TacticalItem item);
+  public abstract void UnEquip(EquipSlot.Slot slot);
+  public abstract void UnEquip();
 }

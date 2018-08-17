@@ -25,6 +25,14 @@ public class AnatomyArm : ActorAnatomy {
     SwapIn(target_slot, item, BYPASS_DETACH);
   }
 
+  public override void UnEquip() {
+    throw new System.NotImplementedException();
+  }
+
+  public override void UnEquip(EquipSlot.Slot slot) {
+    throw new System.NotImplementedException();
+  }
+
   void SwapIn(EquipSlot.Slot target_slot, TacticalItem item, bool bypass_detach = false) {
     if (!bypass_detach) {
       switch (target_slot) {

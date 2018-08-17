@@ -6,7 +6,7 @@ public class TacticalActor : TacticalGameObject {
   ActorStat stat;
   int action_points;
   public Dictionary<string, TacticalAction> actions;
-  Dictionary<ActorAnatomy.Anatomy, ActorAnatomy> anatomies;
+  public Dictionary<ActorAnatomy.Anatomy, ActorAnatomy> anatomies;
   public Dictionary<EquipSlot.Slot, ActorAnatomy> anatomy_map;
 
 	// Use this for initialization
