@@ -20,15 +20,6 @@ public class ActEquip : TacticalAction {
   private void _Act(TacticalItem item, EquipSlot.Slot slot) {
     ActorAnatomy anatomy;
     actor.anatomy_map.TryGetValue(slot, out anatomy);
-
-    switch (slot) {
-      case EquipSlot.Slot.arm_2h:
-        anatomy.Equip(item);
-        ActorAnatomy other_side;
-        actor.anatomy_map.TryGetValue(EquipSlot.Slot.arm_l, out other_side);
-        ((AnatomyArm)other_side).EquipWithoutDetach(item, EquipSlot.Slot.arm_l);
-        break;
-    }
-
+    anatomy.Equip(item);
   }
 }

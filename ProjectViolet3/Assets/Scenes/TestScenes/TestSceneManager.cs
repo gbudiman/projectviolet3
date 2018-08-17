@@ -27,7 +27,7 @@ public class TestSceneManager : MonoBehaviour {
 
   void TestEquip(TacticalActor actor, TacticalItem item) {
     TestEquip2H(actor, item);
-    TestUnequip(actor, ActorAnatomy.Anatomy.arm_r);
+    TestUnequip(actor, EquipSlot.Slot.arm_l);
   }
 
   void TestEquip2H(TacticalActor actor, TacticalItem item) {
@@ -41,9 +41,9 @@ public class TestSceneManager : MonoBehaviour {
     Debug.Log("Test Equip 2H completed");
   }
 
-  void TestUnequip(TacticalActor actor, ActorAnatomy.Anatomy anatomy) {
+  void TestUnequip(TacticalActor actor, EquipSlot.Slot slot) {
     ActUnequip action = (ActUnequip)actor.actions["Unequip Item"];
-    action.Act(anatomy);
+    action.Act(slot);
     var q = actor.QueryAnatomy();
 
     Assert.IsTrue(q[EquipSlot.Slot.arm_2h] == "None");

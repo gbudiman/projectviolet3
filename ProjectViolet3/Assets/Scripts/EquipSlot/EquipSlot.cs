@@ -20,8 +20,11 @@ public abstract class EquipSlot {
     item = _item;
   }
 
-  public void Detach() {
+  public TacticalItem Detach() {
+    var cached = item;
     item = null;
+
+    return cached;
   }
 
   public TacticalItem Get() {

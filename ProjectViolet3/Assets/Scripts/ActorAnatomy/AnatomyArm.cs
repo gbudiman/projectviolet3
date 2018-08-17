@@ -23,11 +23,12 @@ public class AnatomyArm : ActorAnatomy {
 
   public override void Equip(TacticalItem item) {
     EquipSlot.Slot target_slot = item.target_slot[0];
-    SwapIn(target_slot, item);
-  }
 
-  public void EquipWithoutDetach(TacticalItem item, EquipSlot.Slot target_slot) {
-    SwapIn(target_slot, item, BYPASS_DETACH);
+    Attach(target_slot, item);
+    if (target_slot == EquipSlot.Slot.arm_2h) {
+      Attach(EquipSlot.Slot.arm_r, item);
+      pair.Attach(EquipSlot.Slot.arm_l, item);
+    }
   }
 
   public override void UnEquip() {
@@ -35,29 +36,25 @@ public class AnatomyArm : ActorAnatomy {
   }
 
   public override void UnEquip(EquipSlot.Slot slot) {
-    throw new System.NotImplementedException();
-  }
-
-  void SwapIn(EquipSlot.Slot target_slot, TacticalItem item, bool bypass_detach = false) {
-    if (!bypass_detach) {
-      switch (target_slot) {
-        case EquipSlot.Slot.arm_2h:
-          DetachAll(new List<EquipSlot.Slot>() { EquipSlot.Slot.arm_l, EquipSlot.Slot.arm_r, EquipSlot.Slot.arm_2h });
+    TacticalItem item = Detach(slot);
+    if (item != null && item.target_slot[0] == EquipSlot.Slot.arm_2h) {
+      switch (side) {
+        case Side.l: 
+          pair.UnEquip(EquipSlot.Slot.arm_r);
+          pair.UnEquip(EquipSlot.Slot.arm_2h);
           break;
-        case EquipSlot.Slot.arm_l:
-          DetachAll(new List<EquipSlot.Slot>() { EquipSlot.Slot.arm_l, EquipSlot.Slot.arm_2h });
+        case Side.r:
+          pair.UnEquip(EquipSlot.Slot.arm_l);
           break;
-
       }
-    }
 
-    Attach(target_slot, item);
+    }
   }
 
-  void Detach(EquipSlot.Slot _slot) {
+  TacticalItem Detach(EquipSlot.Slot _slot) {
     EquipSlot slot;
     slots.TryGetValue(_slot, out slot);
-    slot.Detach();
+    return slot.Detach();
   }
 
   void DetachAll() {
