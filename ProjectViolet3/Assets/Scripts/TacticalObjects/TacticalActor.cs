@@ -37,9 +37,11 @@ public class TacticalActor : TacticalGameObject {
       { ActorAnatomy.Anatomy.body, new AnatomyBody() },
       { ActorAnatomy.Anatomy.leg_l, new AnatomyLeg(AnatomyLeg.Side.l) },
       { ActorAnatomy.Anatomy.leg_r, new AnatomyLeg(AnatomyLeg.Side.r) },
-
     };
 
+    ((AnatomyArm)anatomies[ActorAnatomy.Anatomy.arm_l]).RegisterPair((AnatomyArm)anatomies[ActorAnatomy.Anatomy.arm_r]);
+    ((AnatomyArm)anatomies[ActorAnatomy.Anatomy.arm_r]).RegisterPair((AnatomyArm)anatomies[ActorAnatomy.Anatomy.arm_l]);
+                                                      
     foreach (KeyValuePair<ActorAnatomy.Anatomy, ActorAnatomy> pair in anatomies) {
       foreach (EquipSlot.Slot slot in pair.Value.MapAnatomySlot()) {
         // anatomy_map[slot] = pair.Value;

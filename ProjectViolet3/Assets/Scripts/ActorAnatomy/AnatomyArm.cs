@@ -9,11 +9,16 @@ public class AnatomyArm : ActorAnatomy {
   public enum Slot { hand, arm };
   public enum Side { l, r };
   public Side side;
+  AnatomyArm pair;
 
   public AnatomyArm(Side _side): base() {
     side = _side;
     equip_hand = new EquipHand();
     equip_arm = new EquipArm();
+  }
+
+  public void RegisterPair(AnatomyArm other) {
+    pair = other;
   }
 
   public override void Equip(TacticalItem item) {
