@@ -77,17 +77,18 @@ public class TacticalActor : TacticalGameObject {
     actions.Add(action.name, action);
   }
 
-  public void QueryAnatomy(ActorAnatomy.Anatomy _anatomy) {
-    ActorAnatomy anatomy;
-    anatomies.TryGetValue(_anatomy, out anatomy);
+  public Dictionary<EquipSlot.Slot, string> QueryAnatomy() {
+    Dictionary<ActorAnatomy.Anatomy, string> res = new Dictionary<ActorAnatomy.Anatomy, string>();
+    Dictionary<EquipSlot.Slot, string> req = new Dictionary<EquipSlot.Slot, string>();
 
-    foreach (KeyValuePair<EquipSlot.Slot, EquipSlot> pair in anatomy.slots) {
-      var val = pair.Value.Get();
-
-      if (val != null) {
-        Debug.Log(pair.Key + " " + pair.Value.Get().name);
+    foreach (KeyValuePair<ActorAnatomy.Anatomy, ActorAnatomy> anatomy in anatomies) {
+      foreach (KeyValuePair<EquipSlot.Slot, EquipSlot> pair in anatomy.Value.slots) {
+        var val = pair.Value.Get();
+        req[pair.Key] = val == null ? "None" : val.name;
       }
     }
+
+    return req;
   }
   
 }

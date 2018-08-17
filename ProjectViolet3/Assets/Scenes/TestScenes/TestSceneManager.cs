@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 
 public class TestSceneManager : MonoBehaviour {
   TacticalActor tactical_actor_prefab;
@@ -28,7 +29,10 @@ public class TestSceneManager : MonoBehaviour {
     TacticalAction action;
     actor.actions.TryGetValue("Equip Item", out action);
     ((ActEquip)action).Act(item);
-    actor.QueryAnatomy(ActorAnatomy.Anatomy.arm_r);
-    actor.QueryAnatomy(ActorAnatomy.Anatomy.arm_l);
+    var q = actor.QueryAnatomy();
+
+    Assert.IsTrue(q[EquipSlot.Slot.arm_2h] == item.name);
+    Assert.IsTrue(q[EquipSlot.Slot.arm_l] == item.name);
+    Assert.IsTrue(q[EquipSlot.Slot.arm_r] == item.name);
   }
 }
