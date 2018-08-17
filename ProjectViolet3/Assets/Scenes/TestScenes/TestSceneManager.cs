@@ -28,6 +28,10 @@ public class TestSceneManager : MonoBehaviour {
   void TestEquip(TacticalActor actor, TacticalItem item) {
     TestEquip2H(actor, item);
     TestUnequip(actor, EquipSlot.Slot.arm_l);
+    TestEquip2H(actor, item);
+    TestUnequip(actor, EquipSlot.Slot.arm_r);
+    TestEquip2H(actor, item);
+    TestUnequip(actor, EquipSlot.Slot.arm_2h);
   }
 
   void TestEquip2H(TacticalActor actor, TacticalItem item) {
