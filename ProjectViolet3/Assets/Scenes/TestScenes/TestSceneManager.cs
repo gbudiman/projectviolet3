@@ -29,5 +29,6 @@ public class TestSceneManager : MonoBehaviour {
     actor.actions.TryGetValue("Equip Item", out action);
     ((ActEquip)action).Act(item);
     actor.QueryAnatomy(ActorAnatomy.Anatomy.arm_r);
+    actor.QueryAnatomy(ActorAnatomy.Anatomy.arm_l);
   }
 }

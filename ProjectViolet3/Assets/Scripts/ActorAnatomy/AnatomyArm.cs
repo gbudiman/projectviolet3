@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class AnatomyArm : ActorAnatomy {
+  const bool BYPASS_DETACH = true;
   EquipHand equip_hand;
   EquipArm equip_arm;
   public enum Slot { hand, arm };
@@ -20,14 +21,24 @@ public class AnatomyArm : ActorAnatomy {
     SwapIn(target_slot, item);
   }
 
-  void SwapIn(EquipSlot.Slot target_slot, TacticalItem item) {
-    switch (target_slot) {
-      case EquipSlot.Slot.arm_2h:
-        DetachAll(new List<EquipSlot.Slot>() { EquipSlot.Slot.arm_l, EquipSlot.Slot.arm_r, EquipSlot.Slot.arm_2h });
-        Attach(target_slot, item);
-        break;
-             
+  public void EquipWithoutDetach(TacticalItem item, EquipSlot.Slot target_slot) {
+    SwapIn(target_slot, item, BYPASS_DETACH);
+  }
+
+  void SwapIn(EquipSlot.Slot target_slot, TacticalItem item, bool bypass_detach = false) {
+    if (!bypass_detach) {
+      switch (target_slot) {
+        case EquipSlot.Slot.arm_2h:
+          DetachAll(new List<EquipSlot.Slot>() { EquipSlot.Slot.arm_l, EquipSlot.Slot.arm_r, EquipSlot.Slot.arm_2h });
+          break;
+        case EquipSlot.Slot.arm_l:
+          DetachAll(new List<EquipSlot.Slot>() { EquipSlot.Slot.arm_l, EquipSlot.Slot.arm_2h });
+          break;
+
+      }
     }
+
+    Attach(target_slot, item);
   }
 
   void DetachAll(List<EquipSlot.Slot> slots_to_detach) {
